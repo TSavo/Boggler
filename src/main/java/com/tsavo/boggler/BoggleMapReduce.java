@@ -22,7 +22,7 @@ public class BoggleMapReduce {
 		job.setOutputKeyClass(Text.class);
 		job.setOutputValueClass(Text.class);
 		job.setMapperClass(BoggleMap.class);
-		job.setReducerClass(Reduce.class);
+		job.setReducerClass(BogglerReduce.class);
 		job.setInputFormatClass(TextInputFormat.class);
 		job.setOutputFormatClass(TextOutputFormat.class);
 		FileInputFormat.addInputPath(job, new Path(args[0]));

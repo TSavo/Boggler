@@ -6,7 +6,7 @@ import java.util.Arrays;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Reducer;
 
-public class Reduce extends Reducer<Text, Text, Text, Text> {
+public class BogglerReduce extends Reducer<Text, Text, Text, Text> {
 	private static final String BOARD_TO_SOLVE = "catadogbtestcrand";
 
 	@Override
