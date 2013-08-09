@@ -21,7 +21,7 @@ public class BoggleMapReduce {
 		job.setJarByClass(BoggleMapReduce.class);
 		job.setOutputKeyClass(Text.class);
 		job.setOutputValueClass(Text.class);
-		job.setMapperClass(Map.class);
+		job.setMapperClass(BoggleMap.class);
 		job.setReducerClass(Reduce.class);
 		job.setInputFormatClass(TextInputFormat.class);
 		job.setOutputFormatClass(TextOutputFormat.class);

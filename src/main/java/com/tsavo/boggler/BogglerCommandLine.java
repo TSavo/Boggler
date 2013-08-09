@@ -9,7 +9,7 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Main {
+public class BogglerCommandLine {
 
 	public static void printWords(List<String> someWords) {
 		for (String word : someWords) {
