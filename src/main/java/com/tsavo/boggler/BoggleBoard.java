@@ -2,7 +2,9 @@ package com.tsavo.boggler;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * A class for the Boggle Board, a 4x4 grid of letters
@@ -22,7 +24,7 @@ public class BoggleBoard {
 		boolean touched = false;
 		int row;
 		int column;
-		List<BoggleBoardCharacter> adjacentCharacters = new ArrayList<>();
+		Map<String, List<BoggleBoardCharacter>> adjacentCharactersMap = new HashMap<>();
 
 		BoggleBoardCharacter(String aCharacter, int aRow, int aCol) {
 			character = aCharacter;
@@ -53,8 +55,12 @@ public class BoggleBoard {
 		 */
 		public List<BoggleBoardCharacter> getUntouchedAdjacentCharacters(String aCharacter) {
 			List<BoggleBoardCharacter> adjacent = new ArrayList<>();
-			for (BoggleBoardCharacter adj : adjacentCharacters) {
-				if (aCharacter.equals(adj.getCharacter()) && !adj.isTouched()) {
+			List<BoggleBoardCharacter> matches = adjacentCharactersMap.get(aCharacter);
+			if (matches == null) {
+				return adjacent;
+			}
+			for (BoggleBoardCharacter adj : matches) {
+				if (!adj.isTouched()) {
 					adjacent.add(adj);
 				}
 			}
@@ -68,7 +74,12 @@ public class BoggleBoard {
 		 *          The BoggleBoardCharacter that is adjacent to this one
 		 */
 		public void addAdjacentCharacter(BoggleBoardCharacter aCharacter) {
-			adjacentCharacters.add(aCharacter);
+			List<BoggleBoardCharacter> list = adjacentCharactersMap.get(aCharacter.getCharacter());
+			if (list == null) {
+				list = new ArrayList<>();
+				adjacentCharactersMap.put(aCharacter.getCharacter(), list);
+			}
+			list.add(aCharacter);
 		}
 
 		public String getCharacter() {
